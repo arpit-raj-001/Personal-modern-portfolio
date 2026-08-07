@@ -1,11 +1,31 @@
 :root {
+  --bg-color: #0a0a0a;
+  --card-bg: rgba(23, 23, 23, 0.85);
+  --text-main: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.87);
+  --accent-color: #0055ff;
+  --dark-color: #000000;
+  --btn-color: #333333;
+}
+
+[data-theme="beige"] {
+  --bg-color: #F7F1E8;
+  --card-bg: #FFFDF9;
+  --text-main: #43352A;
+  --text-secondary: #43352A;
+  --accent-color: #C89B6D;
+  --dark-color: #43352A;
+  --btn-color: #6E533C;
+}
+
+body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #000000;
+  color: var(--text-secondary);
+  background-color: var(--bg-color);
+  transition: background-color 0.5s ease, color 0.5s ease;
 
   font-synthetic: none;
   text-rendering: optimizeLegibility;
@@ -22,7 +42,6 @@ body {
   display: flex;
   min-height: 100vh;
   min-width: 100vw;
-  background-color: #0a0a0a;
 }
 
 #root {

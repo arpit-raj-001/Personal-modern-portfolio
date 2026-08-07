@@ -13,7 +13,9 @@ import {
   FiLinkedin,
   FiGithub,
 } from "react-icons/fi";
+import { BsPaintBucket } from "react-icons/bs";
 import { SiLeetcode, SiCodeforces, SiCodechef } from "react-icons/si";
+import { useTheme } from "./contexts/ThemeContext";
 import "./Navigation.css";
 import resumePdf from "./assets/arpit-raj-resume-101 (1) (1).pdf";
 
@@ -26,10 +28,12 @@ const navItems = [
   { name: "Codeforces", icon: <SiCodeforces />, href: "https://codeforces.com/profile/aadzz", target: "_blank" },
   { name: "CodeChef", icon: <SiCodechef />, href: "https://www.codechef.com/users/arpit_9921", target: "_blank" },
   { name: "GitHub", icon: <FiGithub />, href: "https://github.com/arpit-raj-001", target: "_blank" },
+  { name: "Theme", icon: <BsPaintBucket />, action: "toggleTheme" },
 ];
 
 export default function Navigation() {
   const mouseX = useMotionValue(Infinity);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="nav-container">
@@ -42,14 +46,14 @@ export default function Navigation() {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {navItems.map((item) => (
-          <IconContainer key={item.name} item={item} mouseX={mouseX} />
+          <IconContainer key={item.name} item={item} mouseX={mouseX} toggleTheme={toggleTheme} theme={theme} />
         ))}
       </motion.nav>
     </div>
   );
 }
 
-function IconContainer({ item, mouseX }) {
+function IconContainer({ item, mouseX, toggleTheme, theme }) {
   const ref = useRef(null);
 
   const distance = useTransform(mouseX, (val) => {
@@ -84,6 +88,55 @@ function IconContainer({ item, mouseX }) {
 
   const [hovered, setHovered] = useState(false);
 
+  const isThemeToggle = item.action === "toggleTheme";
+
+  const content = (
+    <motion.div
+      ref={ref}
+      style={{ width, height }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="nav-item-animated cursor-can-hover"
+      onClick={isThemeToggle ? toggleTheme : undefined}
+    >
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, x: "-50%", scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, x: "-50%", scale: 1 }}
+            exit={{ opacity: 0, y: 2, x: "-50%", scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            className="nav-tooltip"
+          >
+            {item.name}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.div
+        style={{
+          width: iconSize,
+          height: iconSize,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: iconSize,
+          color: hovered || (isThemeToggle && theme === 'beige') ? "var(--text-main)" : "var(--text-secondary)",
+        }}
+      >
+        {item.icon}
+      </motion.div>
+    </motion.div>
+  );
+
+  if (isThemeToggle) {
+    return (
+      <div className="nav-link-wrapper" style={{ cursor: 'pointer' }}>
+        {content}
+      </div>
+    );
+  }
+
   return (
     <a
       href={item.href}
@@ -92,41 +145,7 @@ function IconContainer({ item, mouseX }) {
       className="nav-link-wrapper"
       style={{ display: "block", textDecoration: "none" }}
     >
-      <motion.div
-        ref={ref}
-        style={{ width, height }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className="nav-item-animated"
-      >
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 10, x: "-50%", scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, x: "-50%", scale: 1 }}
-              exit={{ opacity: 0, y: 2, x: "-50%", scale: 0.8 }}
-              transition={{ duration: 0.2 }}
-              className="nav-tooltip"
-            >
-              {item.name}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <motion.div
-          style={{
-            width: iconSize,
-            height: iconSize,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: iconSize,
-            color: hovered ? "#ffffff" : "#a3a3a3",
-          }}
-        >
-          {item.icon}
-        </motion.div>
-      </motion.div>
+      {content}
     </a>
   );
 }
