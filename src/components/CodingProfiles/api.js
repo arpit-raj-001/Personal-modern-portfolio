@@ -65,15 +65,19 @@ export const fetchCodeforcesStats = async (handle) => {
 
 export const fetchLeetCodeStats = async (username) => {
   try {
-    const [profileRes, contestRes] = await Promise.all([
-      fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${username}`),
-      fetch(`https://alfa-leetcode-api.onrender.com/${username}/contest`)
-    ]);
-    
+    const profileRes = await fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${username}`);
     const profileData = await profileRes.json();
-    const contestData = await contestRes.json();
-
     if (profileData.errors) throw new Error("LC API failed");
+
+    let contestData = null;
+    try {
+      const contestRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/contest`);
+      if (contestRes.ok) {
+        contestData = await contestRes.json();
+      }
+    } catch (e) {
+      console.warn("LC Contest API failed or rate limited", e);
+    }
 
     
     const heatmap = {};
@@ -91,7 +95,7 @@ export const fetchLeetCodeStats = async (username) => {
 
     let maxRating = 0;
     const ratingHistory = [];
-    if (contestData.contestParticipation) {
+    if (contestData && contestData.contestParticipation) {
       contestData.contestParticipation.forEach(contest => {
         const r = Math.round(contest.rating);
         if (r > maxRating) maxRating = r;
@@ -107,7 +111,7 @@ export const fetchLeetCodeStats = async (username) => {
       data: {
         platform: "LeetCode",
         solved: profileData.totalSolved || 0,
-        rating: Math.round(contestData.contestRating || profileData.contributionPoint || 0),
+        rating: Math.round((contestData && contestData.contestRating) || profileData.contributionPoint || 0),
         maxRating: maxRating > 0 ? maxRating : (profileData.ranking || 0),
         rank: "Knight",
         heatmap,
