@@ -1,6 +1,7 @@
 import { useRef, useState, useMemo, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { useTheme } from "../../contexts/ThemeContext";
 
 function useReducedMotion() {
   const [matches, setMatch] = useState(
@@ -21,6 +22,7 @@ export default function SettlementField() {
   const pointsRef = useRef(null);
   const materialRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
+  const { theme } = useTheme();
 
   const [{ positions, types, phases }] = useState(() => {
     const coreCount = 10000;
@@ -87,12 +89,21 @@ export default function SettlementField() {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uColorCore: { value: new THREE.Color("#F2F0EA") },
-      uColorActive: { value: new THREE.Color("#0055ff") },
+      uColorCore: { value: new THREE.Color(theme === 'beige' ? "#C89B6D" : "#F2F0EA") },
+      uColorActive: { value: new THREE.Color(theme === 'beige' ? "#43352A" : "#0055ff") },
+      uAlphaMultiplier: { value: theme === 'beige' ? 5.0 : 1.0 },
       uReducedMotion: { value: prefersReducedMotion ? 1.0 : 0.0 },
     }),
-    [prefersReducedMotion],
+    [prefersReducedMotion, theme],
   );
+
+  useEffect(() => {
+    if (materialRef.current) {
+      materialRef.current.blending = theme === 'beige' ? THREE.NormalBlending : THREE.AdditiveBlending;
+      materialRef.current.uniforms.uAlphaMultiplier.value = theme === 'beige' ? 5.0 : 1.0;
+      materialRef.current.needsUpdate = true;
+    }
+  }, [theme]);
 
   useFrame((state, delta) => {
     if (!pointsRef.current || !materialRef.current) return;
@@ -135,6 +146,7 @@ export default function SettlementField() {
         vertexShader={`
           uniform float uTime;
           uniform float uReducedMotion;
+          uniform float uAlphaMultiplier;
           attribute float aType;
           attribute float aPhase;
           
@@ -244,6 +256,7 @@ export default function SettlementField() {
         fragmentShader={`
           uniform vec3 uColorCore;
           uniform vec3 uColorActive;
+          uniform float uAlphaMultiplier;
           
           varying float vType;
           varying float vPulse;
@@ -266,7 +279,7 @@ export default function SettlementField() {
               alpha = smoothstep(0.5, 0.2, dist) * 0.15; // Reduced membrane visibility
             }
 
-            gl_FragColor = vec4(color, alpha);
+            gl_FragColor = vec4(color, alpha * uAlphaMultiplier);
           }
         `}
       />

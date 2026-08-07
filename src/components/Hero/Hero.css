@@ -54,6 +54,7 @@
   filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.5));
   line-height: 0.9;
   margin: 0;
+  transition: filter 0.5s ease;
 }
 
 .hero-subtitle {
@@ -66,6 +67,7 @@
   color: var(--text-secondary);
   line-height: 1.625;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+  transition: filter 0.5s ease;
 }
 
 .hero-content-right {
@@ -91,6 +93,7 @@
   color: var(--text-secondary);
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
   margin: 0;
+  transition: filter 0.5s ease;
 }
 
 .hero-education {
@@ -98,7 +101,7 @@
   font-size: 0.85rem;
   font-weight: 300;
   color: var(--text-secondary);
-  margin: 0 0 -0.5rem 0; /* negative margin to pull the title closer */
+  margin: 0 0 -0.5rem 0;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -156,4 +159,10 @@
   .hero-title {
     font-size: 10rem;
   }
+}
+
+html[data-theme="beige"] .hero-title,
+html[data-theme="beige"] .hero-subtitle,
+html[data-theme="beige"] .hero-meta {
+  filter: none;
 }
