@@ -39,7 +39,7 @@
 .hero-content-left {
   position: absolute;
   z-index: 10;
-  bottom: 4rem;
+  bottom: 2rem;
   left: 2rem;
   max-width: 42rem;
   pointer-events: none;
@@ -73,7 +73,7 @@
 .hero-content-right {
   position: absolute;
   z-index: 10;
-  bottom: 4rem;
+  bottom: 2rem;
   right: 2rem;
   display: flex;
   flex-direction: column;
@@ -137,8 +137,8 @@
 
 @media (min-width: 768px) {
   .hero-content-left {
-    bottom: 6rem;
-    left: 6rem;
+    bottom: 3rem;
+    left: 4rem;
   }
   .hero-title {
     font-size: 6rem;
@@ -147,8 +147,8 @@
     font-size: 1rem;
   }
   .hero-content-right {
-    bottom: 6rem;
-    right: 6rem;
+    bottom: 3rem;
+    right: 4rem;
   }
   .hero-meta {
     font-size: 0.875rem;
