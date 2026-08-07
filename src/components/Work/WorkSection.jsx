@@ -2,6 +2,10 @@ import React, { useEffect, useRef } from "react";
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import "./WorkSection.css";
 
+function getImageUrl(name) {
+  return new URL(`../../assets/${name}`, import.meta.url).href;
+}
+
 const projectData = [
   {
     title: "Medisync",
@@ -644,7 +648,7 @@ export default function WorkSection() {
                         <p>{description}</p>
                         {img && (
                           <img
-                            src={`/src/assets/${img}`}
+                            src={getImageUrl(img)}
                             alt={title}
                             className="work-project-image"
                           />
