@@ -13,18 +13,24 @@ import "./App.css";
 function App() {
   return (
     <ThemeProvider>
-      <div className="app-container">
-        <ElasticCursor />
-        <Navigation />
-        <main>
-          <HeroScene />
-          <WorkSection />
-          <KeyboardSection />
-          <CodingProfiles />
-          <Services />
-          <Footer />
-        </main>
-      </div>
+      <>
+        <div className="mobile-error">
+          <h1><strong>ERROR 6767 😿</strong></h1>
+          <p>made only for LAPTOP view</p>
+        </div>
+        <div className="app-container">
+          <ElasticCursor />
+          <Navigation />
+          <main>
+            <HeroScene />
+            <WorkSection />
+            <KeyboardSection />
+            <CodingProfiles />
+            <Services />
+            <Footer />
+          </main>
+        </div>
+      </>
     </ThemeProvider>
   );
 }
