@@ -1,0 +1,139 @@
+.hero-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #000000;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.hero-gradient {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.05) 0%,
+    #000000 50%,
+    #000000 100%
+  );
+}
+
+.hero-canvas-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.hero-content-left {
+  position: absolute;
+  z-index: 10;
+  bottom: 4rem;
+  left: 2rem;
+  max-width: 42rem;
+  pointer-events: none;
+}
+
+.hero-title {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 3.75rem;
+  letter-spacing: -0.05em;
+  color: #ffffff;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.5));
+  line-height: 0.9;
+  margin: 0;
+}
+
+.hero-subtitle {
+  margin-top: 2rem;
+  max-width: 24rem;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.625;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.hero-content-right {
+  position: absolute;
+  z-index: 10;
+  bottom: 4rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+  text-align: right;
+  pointer-events: none;
+}
+
+.hero-meta {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.8);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+  margin: 0;
+}
+
+.hero-button {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: transparent;
+  color: #ffffff;
+  transition: all 0.5s ease;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  pointer-events: auto;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 768px) {
+  .hero-content-left {
+    bottom: 6rem;
+    left: 6rem;
+  }
+  .hero-title {
+    font-size: 6rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .hero-content-right {
+    bottom: 6rem;
+    right: 6rem;
+  }
+  .hero-meta {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 10rem;
+  }
+}
