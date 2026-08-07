@@ -1,7 +1,8 @@
 .services-section {
   scroll-margin-top: 3.5rem;
   padding: 8rem 0;
-  position: relative;
+  position: sticky;
+  bottom: 0;
   z-index: 0;
   background-color: transparent;
   color: var(--text-main);
