@@ -1,0 +1,229 @@
+.footer-section {
+  scroll-margin-top: 3.5rem;
+  padding: 2rem 0.5rem;
+  position: relative;
+  z-index: 20;
+}
+
+@media (min-width: 640px) {
+  .footer-section { padding: 4rem 0.5rem; }
+}
+@media (min-width: 1024px) {
+  .footer-section { padding: 4rem 0.5rem; }
+}
+
+.footer-inner-bg {
+  background-color: rgba(240, 240, 238, 1);
+  color: rgba(13, 13, 13, 1);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .footer-inner-bg {
+    padding: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-inner-bg {
+    padding: 3.5rem 2.5rem;
+  }
+}
+
+.footer-content {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5.5rem;
+  }
+}
+
+.footer-editorial {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-title {
+  max-width: 36rem;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-family: 'Funnel Sans', system-ui, serif;
+}
+
+.footer-title-sub {
+  margin-top: 0.5rem;
+  display: block;
+  font-weight: 300;
+  color: rgba(13, 13, 13, 0.7);
+}
+
+.footer-subtitle {
+  margin-top: 2.5rem;
+  max-width: 32rem;
+  font-size: 1.125rem;
+  color: rgba(13, 13, 13, 0.8);
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  .footer-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+.footer-social-wrapper {
+  position: relative;
+}
+
+.footer-social-outline {
+  position: absolute;
+  inset: 0;
+  transform: translate(-1rem, -1rem);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(13, 13, 13, 0.4);
+  display: none;
+}
+@media (min-width: 640px) { .footer-social-outline { display: block; } }
+
+.footer-social-card {
+  position: relative;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(13, 13, 13, 0.14);
+  background-color: rgba(240, 240, 238, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .footer-social-card { padding: 2rem; border-color: rgba(13, 13, 13, 0.14); }
+}
+
+@media (min-width: 1024px) {
+  .footer-social-card { padding: 2.5rem; }
+}
+
+.social-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(13, 13, 13, 0.5);
+  padding: 1.25rem 1.5rem;
+  background-color: transparent;
+  color: rgba(13, 13, 13, 1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background-color: rgba(13, 13, 13, 1);
+  color: rgba(240, 240, 238, 1);
+  border-color: transparent;
+}
+
+.social-info {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.social-icon {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(13, 13, 13, 0.2);
+  transition: border-color 0.3s ease;
+}
+
+.social-link:hover .social-icon {
+  border-color: rgba(240, 240, 238, 0.2);
+}
+
+.social-platform {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.social-handle {
+  font-size: 0.875rem;
+  color: rgba(13, 13, 13, 0.6);
+  font-weight: 300;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover .social-handle {
+  color: rgba(240, 240, 238, 0.8);
+}
+
+.social-action-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.social-action {
+  display: none;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  border-radius: 9999px;
+  background-color: rgba(13, 13, 13, 1);
+  color: rgba(240, 240, 238, 1);
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .social-action { display: flex; }
+}
+
+.social-link:hover .social-action {
+  background-color: rgba(240, 240, 238, 1);
+  color: rgba(13, 13, 13, 1);
+}
+.footer-contact-info {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 1.125rem;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.footer-contact-link {
+  color: rgba(13, 13, 13, 1);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.footer-contact-link:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
+.footer-contact-divider {
+  color: rgba(13, 13, 13, 0.4);
+}

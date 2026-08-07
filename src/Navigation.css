@@ -1,6 +1,6 @@
 .nav-container {
   position: fixed;
-  bottom: 24px;
+  top: 24px;
   left: 0;
   right: 0;
   display: flex;

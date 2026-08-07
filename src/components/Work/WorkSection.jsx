@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import "./WorkSection.css";
 
 const projectData = [
@@ -472,6 +473,17 @@ export default function WorkSection() {
     { id: "grid-remaining", indexes: [7, 8, 9, 10, 17, 18, 19, 20, 21] },
   ];
 
+  const skipToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const skipToBottom = () => {
+    if (sectionRef.current) {
+      const bottom = sectionRef.current.offsetTop + sectionRef.current.offsetHeight;
+      window.scrollTo({ top: bottom, behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -484,6 +496,14 @@ export default function WorkSection() {
     >
       <div className="work-outer">
         <div className="work-stage">
+          <div className="work-skip-buttons" aria-hidden="true">
+            <button onClick={skipToTop} title="Skip to Hero Section" className="skip-btn">
+              <FiArrowUp className="skip-icon" />
+            </button>
+            <button onClick={skipToBottom} title="Skip to Next Section" className="skip-btn">
+              <FiArrowDown className="skip-icon" />
+            </button>
+          </div>
           <div className="work-points" aria-hidden="true"></div>
           <div className="work-letter-scene">
             <div className="work-letter-layer" aria-hidden="true"></div>
