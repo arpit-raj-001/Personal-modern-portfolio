@@ -89,6 +89,22 @@
   margin: 0;
 }
 
+.hero-education {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 -0.5rem 0; /* negative margin to pull the title closer */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  pointer-events: auto;
+}
+
 .hero-button {
   padding: 0.75rem 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.3);

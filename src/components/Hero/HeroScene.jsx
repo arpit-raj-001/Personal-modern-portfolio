@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from "react";
+import resumePdf from "../../assets/arpit-raj-resume-101 (1) (1).pdf";
 import "./Hero.css";
 
 const WebGLScene = lazy(() => import("./WebGLScene"));
@@ -36,14 +37,29 @@ export default function HeroScene() {
       </div>
 
       <div className="hero-content-right">
+        <p className="hero-education">
+          LNMIIT, Jaipur<br />
+          B.Tech ECE
+        </p>
         <p className="hero-meta">Software Engineer</p>
-        <button
-          onClick={handleInitialize}
-          className="hero-button"
-          aria-label="Scroll to next section"
-        >
-          View my work
-        </button>
+        <div className="hero-buttons">
+          <button
+            onClick={handleInitialize}
+            className="hero-button"
+            aria-label="Scroll to next section"
+          >
+            View my work
+          </button>
+          <a
+            href={resumePdf}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-button"
+            style={{ textDecoration: 'none' }}
+          >
+            Resume
+          </a>
+        </div>
       </div>
     </section>
   );
